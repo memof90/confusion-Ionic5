@@ -1,0 +1,7 @@
+{
+  "name": "confusion",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
