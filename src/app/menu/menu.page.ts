@@ -1,5 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, Inject } from '@angular/core';
+import {  NavController, NavParams } from '@ionic/angular';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Dish } from '../../shared/dish';
+import { DishService } from '../providers/dish.service';
+import { DishdetailPage } from '../dishdetail/dishdetail.page';
+
 
 @Component({
   selector: 'app-menu',
@@ -8,10 +13,28 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class MenuPage implements OnInit {
   public menu: string;
-  constructor(private activatedRoute: ActivatedRoute) { }
+  dishes: Dish[];
+  errMess: string;
+  selectedDish: Dish;
+  constructor(private activatedRoute: ActivatedRoute, public navCtrl: NavController,
+              private dishservice: DishService,
+              private router: Router,
+              @Inject('BaseURL') public BaseURL: any
+    ) { }
 
   ngOnInit() {
+    this.dishservice.getDishes()
+      .subscribe(dishes => this.dishes = dishes,
+        errmess => this.errMess = (errmess as any));
     this.menu = this.activatedRoute.snapshot.paramMap.get('id');
   }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad MenuPage');
+  }
+
+  // navigate(){
+  //   this.router.navigate(['/dishdetail/:id']);
+  // }
 
 }

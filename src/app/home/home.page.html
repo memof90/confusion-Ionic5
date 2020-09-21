@@ -10,7 +10,7 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large"></ion-title>
+      <ion-title size="large">Home</ion-title>
     </ion-toolbar>
   </ion-header>
 
@@ -27,15 +27,16 @@
         </p>
       </ion-card-content>
     </ion-card>
+    <div [hidden]=" dish || dishErrMess">
+      <ion-spinner></ion-spinner>
+      <h4>Loading ... data please wait</h4>
+    </div>
+    <div *ngIf="dishErrMess">
+      <h2>Error</h2>
+      <h4>{{dishErrMess}}</h4>
+    </div>
   </ion-content>
-  <div [hidden]=" dish || dishErrMess">
-    <ion-spinner></ion-spinner>
-    <h4>Loading ... data please wait</h4>
-  </div>
-  <div *ngIf="dishErrMess">
-    <h2>Error</h2>
-    <h4>{{dishErrMess}}</h4>
-  </div>
+
    <ion-content class="cards">
     <ion-card *ngIf="promotion">
       <img src="{{BaseURL + promotion.image}}" width="300" height="200"/>
@@ -49,15 +50,16 @@
         </p>
       </ion-card-content>
     </ion-card>
+    <div [hidden]=" promotion || promoErrMess">
+      <ion-spinner></ion-spinner>
+      <h4>Loading ... data please wait</h4>
+    </div>
+    <div *ngIf="promoErrMess">
+      <h2>Error</h2>
+      <h4>{{promoErrMess}}</h4>
+    </div>
   </ion-content>
-  <div [hidden]=" promotion || promoErrMess">
-    <ion-spinner></ion-spinner>
-    <h4>Loading ... data please wait</h4>
-  </div>
-  <div *ngIf="promoErrMess">
-    <h2>Error</h2>
-    <h4>{{promoErrMess}}</h4>
-  </div>
+
 
   <ion-content class="cards">
     <ion-card *ngIf="leader">
@@ -72,13 +74,13 @@
         </p>
       </ion-card-content>
     </ion-card>
+    <div [hidden]=" leader || leaderErrMess">
+      <ion-spinner></ion-spinner>
+      <h4>Loading ... data please wait</h4>
+    </div>
+    <div *ngIf="promoErrMess">
+      <h2>Error</h2>
+      <h4>{{promoErrMess}}</h4>
+    </div>
   </ion-content>
-  <div [hidden]=" leader || leaderErrMess">
-    <ion-spinner></ion-spinner>
-    <h4>Loading ... data please wait</h4>
-  </div>
-  <div *ngIf="promoErrMess">
-    <h2>Error</h2>
-    <h4>{{promoErrMess}}</h4>
-  </div>
 </ion-content>

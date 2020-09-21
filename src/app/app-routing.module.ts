@@ -12,25 +12,26 @@ const routes: Routes = [
   //   loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
   // },
   {
-    path: 'menu',
-    loadChildren: () => import('./menu/menu.module').then( m => m.MenuPageModule)
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
     path: 'about',
     loadChildren: () => import('./about/about.module').then( m => m.AboutPageModule)
   },
   {
+    path: 'menu',
+    loadChildren: () => import('./menu/menu.module').then( m => m.MenuPageModule)
+  },
+  {
+    path: 'dishdetail/:id',
+    loadChildren: () => import('./dishdetail/dishdetail.module').then( m => m.DishdetailPageModule)
+  },
+  {
     path: 'contact',
     loadChildren: () => import('./contact/contact.module').then( m => m.ContactPageModule)
-  },
-  {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
-  {
-    path: 'dishdetail',
-    loadChildren: () => import('./dishdetail/dishdetail.module').then( m => m.DishdetailPageModule)
   }
+ 
 ];
 
 @NgModule({

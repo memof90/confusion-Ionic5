@@ -34,4 +34,10 @@ export class DishService {
                     .pipe(catchError(this.processHTTPMsgService.handleError));
   }
 
+
+  getDishIds(): Observable<string[] | any> {
+    return this.getDishes().pipe(map(dishes => dishes.map(dish => dish.id)))
+    .pipe(catchError(error => error));
+  }
+
 }
