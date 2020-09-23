@@ -17,8 +17,8 @@
   <ion-content class="card-background-page">
 
     <div *ngIf="dishes">
-    <ion-card *ngFor="let dish of dishes" >
-      <img src="{{BaseURL + dish.image}}" width="300"  height="200" [routerLink]="['/dishdetail', dish.id] "/>
+    <ion-card *ngFor="let dish of dishes" [routerLink]="['/dishdetail', dish.id]" (pan)="addToFavorite(dish)">
+      <img src="{{BaseURL + dish.image}}" width="300"  height="200" />
       <div class="card-title">{{dish.name}}</div>
       <div class="card-subtitle">{{dish.description}}</div>
     </ion-card>

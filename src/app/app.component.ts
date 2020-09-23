@@ -33,6 +33,11 @@ export class AppComponent implements OnInit {
       url: '/contact',
       icon: 'call'
     },
+    {
+      title: 'My Favorites',
+      url: '/favorites',
+      icon: 'heart'
+    },
   ];
   constructor(
     private platform: Platform,

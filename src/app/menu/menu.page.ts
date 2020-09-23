@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Dish } from '../../shared/dish';
 import { DishService } from '../providers/dish.service';
 import { DishdetailPage } from '../dishdetail/dishdetail.page';
+import { FavoriteService } from '../providers/favorite.service';
+
 
 
 @Component({
@@ -18,6 +20,7 @@ export class MenuPage implements OnInit {
   selectedDish: Dish;
   constructor(private activatedRoute: ActivatedRoute, public navCtrl: NavController,
               private dishservice: DishService,
+              private favoriteservice: FavoriteService,
               private router: Router,
               @Inject('BaseURL') public BaseURL: any
     ) { }
@@ -36,5 +39,9 @@ export class MenuPage implements OnInit {
   // navigate(){
   //   this.router.navigate(['/dishdetail/:id']);
   // }
+  addToFavorite(dish: Dish) {
+    console.log('Adding to Favorites', dish.id);
+    this.favoriteservice.addFavorite(dish.id);
+  }
 
 }
