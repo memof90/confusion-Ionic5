@@ -60,4 +60,14 @@
         </ion-label>
       </ion-item>
     </ion-list>
+    <ion-fab horizontal="end" vertical="bottom" slot="fixed" [hidden]="favorite">
+      <ion-fab-button color="primary" (click)="addToFavorites()">
+        <ion-icon name="heart-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+    <ion-fab horizontal="end" vertical="bottom" slot="fixed" *ngIf="favorite">
+      <ion-fab-button color="primary" (click)="addToFavorites()">
+        <ion-icon name="heart"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
   </ion-content>
