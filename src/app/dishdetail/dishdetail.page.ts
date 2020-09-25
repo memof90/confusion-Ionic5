@@ -7,6 +7,8 @@ import { Comment } from '../../shared/comment';
 import { DishService } from '../providers/dish.service';
 import { switchMap } from 'rxjs/operators';
 import { FavoriteService } from '../providers/favorite.service';
+import { LoadingController, ToastController } from '@ionic/angular';
+
 
 
 @Component({
@@ -27,6 +29,7 @@ export class DishdetailPage implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute,
               private dishService: DishService,
+              private toastCtrl: ToastController,
               @Inject('BaseURL') public BaseURL: any,
               private favoriteservice: FavoriteService
     ) {}
@@ -47,8 +50,14 @@ export class DishdetailPage implements OnInit {
       errmess => this.errMess = (errmess as any));
     }
 
-    addToFavorites() {
+    async addToFavorites() {
       console.log('Adding to Favorites');
       this.favorite = this.favoriteservice.addFavorite(this.dish.id);
+      const toast = this.toastCtrl.create({
+        message: 'Dish'  +  ' ' + this.dish.id  + ' '  +  'added as favorite successfully',
+        duration: 3000,
+        color: 'success'
+      });
+      (await toast).present();
     }
 }
