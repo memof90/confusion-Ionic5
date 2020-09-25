@@ -23,6 +23,8 @@ import { HomePage } from './home/home.page';
 import { ContactPage } from './contact/contact.page';
 import { MenuPage } from './menu/menu.page';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 // Provider
 import { baseURL } from '../shared/baseurl';
@@ -36,7 +38,9 @@ import { baseURL } from '../shared/baseurl';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
     StatusBar,

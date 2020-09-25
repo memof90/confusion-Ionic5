@@ -4,6 +4,9 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { title } from 'process';
+import { ModalController } from '@ionic/angular';
+import { ReservationPage } from './reservation/reservation.page';
+
 
 @Component({
   selector: 'app-root',
@@ -42,7 +45,8 @@ export class AppComponent implements OnInit {
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    public modalCtrl: ModalController
   ) {
     this.initializeApp();
   }
@@ -60,4 +64,11 @@ export class AppComponent implements OnInit {
     //   this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     // }
   }
+  async openReserve() {
+    const modal = await this.modalCtrl.create({
+      component: ReservationPage
+    });
+    return await modal.present();
+  }
+
 }
