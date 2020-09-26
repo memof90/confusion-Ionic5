@@ -7,7 +7,9 @@ import { Comment } from '../../shared/comment';
 import { DishService } from '../providers/dish.service';
 import { switchMap } from 'rxjs/operators';
 import { FavoriteService } from '../providers/favorite.service';
-import { LoadingController, ToastController } from '@ionic/angular';
+import { LoadingController, ToastController, ActionSheetController, ModalController } from '@ionic/angular';
+import { CommentPage } from '../comment/comment.page';
+
 
 
 
@@ -17,6 +19,15 @@ import { LoadingController, ToastController } from '@ionic/angular';
   styleUrls: ['./dishdetail.page.scss'],
 })
 export class DishdetailPage implements OnInit {
+
+  constructor(private activatedRoute: ActivatedRoute,
+              private dishService: DishService,
+              private toastCtrl: ToastController,
+              public actionSheetCtrl: ActionSheetController,
+              public modalCtrl: ModalController,
+              @Inject('BaseURL') public BaseURL: any,
+              private favoriteservice: FavoriteService
+    ) {}
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   public dishdetail: string;
   dish: Dish;
@@ -26,13 +37,8 @@ export class DishdetailPage implements OnInit {
   numcomments: number;
   dishErrMess: string;
   favorite = false;
+  comments: Comment;
 
-  constructor(private activatedRoute: ActivatedRoute,
-              private dishService: DishService,
-              private toastCtrl: ToastController,
-              @Inject('BaseURL') public BaseURL: any,
-              private favoriteservice: FavoriteService
-    ) {}
 
 
   ngOnInit(){
@@ -50,6 +56,7 @@ export class DishdetailPage implements OnInit {
       errmess => this.errMess = (errmess as any));
     }
 
+
     async addToFavorites() {
       console.log('Adding to Favorites');
       this.favorite = this.favoriteservice.addFavorite(this.dish.id);
@@ -60,4 +67,47 @@ export class DishdetailPage implements OnInit {
       });
       (await toast).present();
     }
+
+    async handleButtonClick() {
+      const actionSheet = await this.actionSheetCtrl.create({
+        header: 'Select Actions',
+        buttons: [
+          {text: 'Add to favorites',
+          handler: () => {
+            this.addToFavorites();
+          }
+          },
+          {
+            text: 'Add Comment',
+            handler: () => {
+              this.openReserve();
+            }
+          },
+          { text: 'Cancel', role: 'cancel',
+          handler: () => {
+            console.log('Cancel actions');
+          }
+          }
+        ]
+      });
+      (await actionSheet).present();
+  }
+
+  async openReserve() {
+    const modal = await this.modalCtrl.create({
+      component: CommentPage,
+      componentProps: {
+        author: '',
+        rating: 5,
+        comment: ''
+      },
+    });
+    modal.onDidDismiss().then(comment => {
+      if (comment) {
+      this.dish.comments.push(comment.data);
+      }
+    });
+    return await modal.present();
+  }
+
 }

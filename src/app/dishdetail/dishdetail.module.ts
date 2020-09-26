@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { DishdetailPageRoutingModule } from './dishdetail-routing.module';
 
 import { DishdetailPage } from './dishdetail.page';
+import { CommentPage } from '../comment/comment.page';
+
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    DishdetailPageRoutingModule
+    DishdetailPageRoutingModule,
   ],
   declarations: [DishdetailPage]
 })
