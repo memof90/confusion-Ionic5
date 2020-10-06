@@ -18,7 +18,7 @@
 
     <div *ngIf="dishes">
     <ion-card *ngFor="let dish of dishes" [routerLink]="['/dishdetail', dish.id]" (pan)="addToFavorite(dish)">
-      <img src="{{BaseURL + dish.image}}" width="300"  height="200" />
+      <img src="{{BaseURL + dish.image}}" class="img-card" />
       <div class="card-title">{{dish.name}}</div>
       <div class="card-subtitle">{{dish.description}}</div>
     </ion-card>

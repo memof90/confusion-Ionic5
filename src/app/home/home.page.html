@@ -16,7 +16,7 @@
 
   <ion-content>
     <ion-card *ngIf="dish" class="cards">
-      <img src="{{BaseURL + dish.image}}" width="300" height="200"/>
+      <img src="{{BaseURL + dish.image}}" class="img-card"/>
       <ion-card-content>
         <ion-card-subtitle>Description</ion-card-subtitle>
         <ion-card-title>
@@ -39,7 +39,7 @@
 
    <ion-content class="cards">
     <ion-card *ngIf="promotion">
-      <img src="{{BaseURL + promotion.image}}" width="300" height="200"/>
+      <img src="{{BaseURL + promotion.image}}" class="img-card"/>
       <ion-card-content>
         <ion-card-subtitle>Description</ion-card-subtitle>
         <ion-card-title>
@@ -63,7 +63,7 @@
 
   <ion-content class="cards">
     <ion-card *ngIf="leader">
-      <img src="{{BaseURL + leader.image}}" width="300" height="200"/>
+      <img src="{{BaseURL + leader.image}}" class="img-card"/>
       <ion-card-content>
         <ion-card-subtitle>Description</ion-card-subtitle>
         <ion-card-title>
@@ -83,6 +83,7 @@
       <h4>{{promoErrMess}}</h4>
     </div>
   </ion-content>
+
   <ion-fab horizontal="end" vertical="bottom" slot="fixed">
     <ion-fab-button color="primary">
       <ion-icon md="caret-up" ios="chevron-up-circle-outline"></ion-icon>

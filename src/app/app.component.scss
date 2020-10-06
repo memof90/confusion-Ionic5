@@ -117,3 +117,19 @@ ion-note {
 ion-item.selected {
   --color: var(--ion-color-primary);
 }
+
+
+$lt-gray: #dddddd;
+$background-dark:  #512DA8;
+$background-light: #9575cd;
+$background-pale: #d1c4e9;
+
+
+.background-pale {
+  background-color: $background-pale !important;
+}
+
+.image-logo {
+  width: 100% !important;
+  height: 100% !important;
+}
