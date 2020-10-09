@@ -6,6 +6,7 @@ import { baseURL } from '../../shared/baseurl';
 import { ProcessHttpmsgService } from './process-httpmsg.service';
 import { Dish } from '../../shared/dish';
 import { DishService } from './dish.service';
+import { Storage } from '@ionic/storage';
 
 
 @Injectable({
@@ -15,13 +16,21 @@ export class FavoriteService {
 
   favorites: Array<any>;
   constructor(private http: HttpClient, private processHTTPMsgService: ProcessHttpmsgService,
-              private dishservice: DishService
+              private dishservice: DishService, private storage: Storage
     ) {
-    this.favorites = [];
+      storage.get('favorites').then(favorites => {
+        if (favorites) {
+          this.favorites = favorites;
+        }else {
+          this.favorites = [];
+        }
+      });
   }
   addFavorite(id: string): boolean {
+    // tslint:disable-next-line: curly
     if (!this.isFavorite(id))
       this.favorites.push(id);
+    this.storage.set('favorites', this.favorites);
     console.log('favorites', this.favorites);
     return true;
 }
@@ -39,6 +48,7 @@ export class FavoriteService {
     const index = this.favorites.indexOf(id);
     if (index >= 0 ) {
       this.favorites.splice(index, 1);
+      this.storage.set('favorites', this.favorites);
       return this.getFavorites();
     }
     else {
