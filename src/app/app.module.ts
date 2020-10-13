@@ -26,6 +26,11 @@ import { MenuPage } from './menu/menu.page';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+// Local Notifications
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+
+
+
 
 // Provider
 import { baseURL } from '../shared/baseurl';
@@ -46,6 +51,7 @@ import { baseURL } from '../shared/baseurl';
   ],
   providers: [
     StatusBar,
+    LocalNotifications,
     SplashScreen,
     DishService,
     LeaderService,
