@@ -38,6 +38,10 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 // camera
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
+// network connection
+import { Network } from '@ionic-native/network/ngx';
+
+
 
 
 // Provider
@@ -55,7 +59,7 @@ import { baseURL } from '../shared/baseurl';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [
     StatusBar,
@@ -63,6 +67,7 @@ import { baseURL } from '../shared/baseurl';
     EmailComposer,
     SocialSharing,
     Camera,
+    Network,
     SplashScreen,
     DishService,
     LeaderService,

@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import { Platform, LoadingController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { title } from 'process';
 import { ModalController } from '@ionic/angular';
 import { ReservationPage } from './reservation/reservation.page';
 import { LoginPage } from './login/login.page';
+
+import { Network } from '@ionic-native/network/ngx';
 
 
 @Component({
@@ -16,6 +18,7 @@ import { LoginPage } from './login/login.page';
 })
 export class AppComponent implements OnInit {
   public selectedIndex = 0;
+  loading: any = null;
   public appPages = [
     {
       title: 'Home',
@@ -47,7 +50,9 @@ export class AppComponent implements OnInit {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController,
+    private network: Network,
+    private loadingCtrl: LoadingController
   ) {
     this.initializeApp();
   }
@@ -56,6 +61,27 @@ export class AppComponent implements OnInit {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      // network satatus
+      this.network.onDisconnect().subscribe(() => {
+        if (!this.loading) {
+          this.loading = this.loadingCtrl.create({
+            message: 'Newwork Disconnected'
+          });
+          this.loading.present();
+        }
+      });
+      this.network.onConnect().subscribe(() => {
+        setTimeout(() => {
+          if (this.network.type === 'wifi') {
+            console.log('we got a wifi connection, woohoo!');
+          }
+        }, 3000);
+        if (this.loading) {
+          this.loading.dismiss();
+          this.loading = null;
+        }
+      });
     });
   }
 
