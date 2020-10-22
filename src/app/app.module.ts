@@ -35,6 +35,9 @@ import { EmailComposer } from '@ionic-native/email-composer/ngx';
 // social sharing
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
+// camera
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+
 
 
 // Provider
@@ -59,6 +62,7 @@ import { baseURL } from '../shared/baseurl';
     LocalNotifications,
     EmailComposer,
     SocialSharing,
+    Camera,
     SplashScreen,
     DishService,
     LeaderService,

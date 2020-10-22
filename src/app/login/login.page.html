@@ -31,5 +31,6 @@
     </ion-item>
     <ion-button type="submit" [disabled]="!loginForm.valid"> Login</ion-button>
   </form>
-
+  <p>Do not have account? then</p>
+  <ion-button fill="outline" (click)="openRegister()">Register</ion-button>
 </ion-content>

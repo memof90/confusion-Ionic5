@@ -3,6 +3,8 @@ import { ModalController, Platform } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from '../../shared/user';
+import { RegisterPage } from '../register/register.page';
+
 
 @Component({
   selector: 'app-login',
@@ -62,6 +64,14 @@ export class LoginPage implements OnInit {
     this.modalCtrl.dismiss({
         dismissed: true
       });
+  }
+
+ async openRegister() {
+    const modal = await this.modalCtrl.create({
+      component: RegisterPage,
+    });
+    modal.onDidDismiss().then(() => this.dismiss());
+    return await modal.present();
   }
 
 }
