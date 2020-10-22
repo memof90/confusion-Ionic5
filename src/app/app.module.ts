@@ -41,6 +41,9 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 // network connection
 import { Network } from '@ionic-native/network/ngx';
 
+// photo-library
+import { PhotoLibrary } from '@ionic-native/photo-library/ngx';
+
 // call number
 import { CallNumber } from '@ionic-native/call-number/ngx';
 
@@ -72,6 +75,7 @@ import { baseURL } from '../shared/baseurl';
     Camera,
     Network,
     CallNumber,
+    PhotoLibrary,
     SplashScreen,
     DishService,
     LeaderService,

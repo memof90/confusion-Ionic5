@@ -14,7 +14,8 @@ export class RegisterPage implements OnInit {
 
   constructor(public modalCtrl: ModalController,
               public formBuilder: FormBuilder,
-              private camera: Camera) { }
+              private camera: Camera,
+             ) { }
 
   ngOnInit() {
     this.register = this.formBuilder.group({
@@ -57,5 +58,28 @@ export class RegisterPage implements OnInit {
       console.log('Error obtaining picture');
     });
   }
+  getFromLibrary() {
+    const options: CameraOptions = {
+      quality: 100,
+      targetHeight: 100,
+      targetWidth: 100,
+      correctOrientation: true,
+      allowEdit: true,
+      saveToPhotoAlbum: true,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      encodingType: this.camera.EncodingType.PNG,
+      mediaType: this.camera.MediaType.PICTURE,
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+      cameraDirection: this.camera.Direction.FRONT
+    }
+
+    this.camera.getPicture(options)
+      .then( (imagenData) => {
+        this.image = 'data:image/png;base64,' + imagenData;
+      },
+      (err) => { console.log('Error obtaining picture'); });
+
+  }
+
 
 }

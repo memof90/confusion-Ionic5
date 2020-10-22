@@ -26,6 +26,13 @@
         </ion-col>
       </ion-row>
     </ion-grid>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-button size="small" (click)="getFromLibrary()">Get From Library</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-card>
   <form [formGroup]="register" (ngSubmit)="onSubmit()">
     <ion-item>
