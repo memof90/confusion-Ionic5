@@ -41,6 +41,9 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 // network connection
 import { Network } from '@ionic-native/network/ngx';
 
+// call number
+import { CallNumber } from '@ionic-native/call-number/ngx';
+
 
 
 
@@ -68,6 +71,7 @@ import { baseURL } from '../shared/baseurl';
     SocialSharing,
     Camera,
     Network,
+    CallNumber,
     SplashScreen,
     DishService,
     LeaderService,
