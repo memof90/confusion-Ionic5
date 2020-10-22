@@ -29,6 +29,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // Local Notifications
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
+// email composer
+import { EmailComposer } from '@ionic-native/email-composer/ngx';
+
+// social sharing
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 
 
@@ -52,6 +57,7 @@ import { baseURL } from '../shared/baseurl';
   providers: [
     StatusBar,
     LocalNotifications,
+    EmailComposer,
     SplashScreen,
     DishService,
     LeaderService,
