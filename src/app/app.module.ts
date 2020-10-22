@@ -58,6 +58,7 @@ import { baseURL } from '../shared/baseurl';
     StatusBar,
     LocalNotifications,
     EmailComposer,
+    SocialSharing,
     SplashScreen,
     DishService,
     LeaderService,

@@ -9,6 +9,7 @@ import { switchMap } from 'rxjs/operators';
 import { FavoriteService } from '../providers/favorite.service';
 import { LoadingController, ToastController, ActionSheetController, ModalController } from '@ionic/angular';
 import { CommentPage } from '../comment/comment.page';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 
 
@@ -27,7 +28,8 @@ export class DishdetailPage implements OnInit {
               public actionSheetCtrl: ActionSheetController,
               public modalCtrl: ModalController,
               @Inject('BaseURL') public BaseURL: any,
-              private favoriteservice: FavoriteService
+              private favoriteservice: FavoriteService,
+              private socialSharing: SocialSharing
     ) {}
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   public dishdetail: string;
@@ -82,6 +84,26 @@ export class DishdetailPage implements OnInit {
             text: 'Add Comment',
             handler: () => {
               this.openReserve();
+            }
+          },
+          {
+            text: 'Share via Facebook',
+            handler: () => {
+              this.socialSharing.shareViaFacebook(
+                this.dish.name + ' -- ' + this.dish.description,
+                this.BaseURL + this.dish.image, '')
+              .then(() => console.log('Posted successfully to Facebook'))
+              .catch(() => console.log('Failed to post to Facebook'));
+            }
+          },
+          {
+            text: 'Share via Twitter',
+            handler: () => {
+              this.socialSharing.shareViaTwitter(
+                this.dish.name + ' -- ' + this.dish.description,
+                this.BaseURL + this.dish.image, '')
+              .then(() => console.log('Posted successfully to Facebook'))
+              .catch(() => console.log('Failed to post to Facebook'));
             }
           },
           { text: 'Cancel', role: 'cancel',
